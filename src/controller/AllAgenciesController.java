@@ -53,6 +53,8 @@ public class AllAgenciesController extends Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+        agenciesMenu.setStyle("-fx-background-color:  #339933; -fx-alignment: center;");
+
         id.setCellValueFactory(new PropertyValueFactory<Agence,Integer>("id_agence"));
         nom.setCellValueFactory(new PropertyValueFactory<Agence,String>("nom"));
         tel.setCellValueFactory(new PropertyValueFactory<Agence,Integer>("tel"));

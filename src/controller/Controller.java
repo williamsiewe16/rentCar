@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import static main.Main.*;
 
@@ -13,25 +14,25 @@ import java.io.IOException;
 
 public abstract class Controller {
     @FXML
-    private Button dashboardMenu;
+    protected Button dashboardMenu;
 
     @FXML
-    private Button agenciesMenu;
+    protected Button agenciesMenu;
 
     @FXML
-    private Button clientsMenu;
+    protected Button clientsMenu;
 
     @FXML
-    private Button EmployeesMenu;
+    protected Button EmployeesMenu;
 
     @FXML
-    private Button carsMenu;
+    protected Button carsMenu;
 
     @FXML
-    private Button reservationsMenu;
+    protected Button reservationsMenu;
 
     @FXML
-    private Button locationsMenu;
+    protected Button locationsMenu;
 
 
     @FXML
@@ -113,10 +114,8 @@ public abstract class Controller {
 
     @FXML
     void openLocationsMenu(ActionEvent event) {
-        System.out.println("working soon");
-
-/*        try{
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/allAgencies.fxml"));
+        try{
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/allLocations.fxml"));
             Parent root = loader.load();
             Stage stage = (Stage)clientsMenu.getScene().getWindow();
             stage.setTitle(AppTitle);
@@ -125,7 +124,7 @@ public abstract class Controller {
             stage.show();
         }catch (IOException e){
             System.out.println(e.getMessage());
-        }*/
+        }
     }
 
     @FXML

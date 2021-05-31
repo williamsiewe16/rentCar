@@ -130,6 +130,7 @@ public class ClientDAO {
 
                 Adresse adresse = new Adresse(id_adresse,rue,ville,codePostal);
                 Client client = new Client(id_client,nom,prenom,tel,adresse);
+                list.add(client);
             }
             return list;
         }catch (SQLException e){
@@ -141,7 +142,7 @@ public class ClientDAO {
     public static List<Client> getLocationPendingClients(Connection connection){
         List<Client> list = new ArrayList<Client>();
         try{
-            PreparedStatement preparedStatement = connection.prepareStatement("select * from Client INNER JOIN Adresse USING(Id_adresse) INNER JOIN louer USING(id_client) WHERE dateFinReelle is NULL");
+            PreparedStatement preparedStatement = connection.prepareStatement("select * from Client INNER JOIN Adresse USING(Id_adresse) INNER JOIN louer USING(Id_client) WHERE dateFinReelle is NULL");
             ResultSet res = preparedStatement.executeQuery();
             while (res.next()){
                 int id_client = res.getInt("id_client");

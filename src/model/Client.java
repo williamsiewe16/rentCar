@@ -32,6 +32,10 @@ public class Client extends Personne {
 		super(nom, prenom, tel,adresse);
 	}
 
+	public Client(int id_client){
+		this.id_client = id_client;
+	}
+
 	public Client(){
 
 	}

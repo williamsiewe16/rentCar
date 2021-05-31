@@ -115,13 +115,13 @@
             <children>
             <HBox alignment="CENTER_LEFT" prefHeight="99.0" prefWidth="892.0">
                <children>
-                  <Label style="-fx-font-weight: bold;" text="Catégorie">
+                  <Label prefHeight="16.0" prefWidth="106.0" style="-fx-font-weight: bold;" text="Catégorie">
                      <padding>
                         <Insets left="10.0" right="10.0" />
                      </padding>
                   </Label>
-                  <ComboBox fx:id="categorieComboBox" prefHeight="24.0" prefWidth="129.0" promptText="Aucune séle" />
-                  <Label style="-fx-font-weight: bold;" text="Marque">
+                  <ComboBox fx:id="categorieComboBox" prefHeight="24.0" prefWidth="173.0" promptText="Aucune séle" />
+                  <Label prefHeight="16.0" prefWidth="90.0" style="-fx-font-weight: bold;" text="Marque">
                      <padding>
                         <Insets left="10.0" right="10.0" />
                      </padding>
@@ -132,7 +132,7 @@
                   <ComboBox fx:id="marqueComboBox" prefHeight="24.0" prefWidth="167.0" promptText="Aucune séle" />
                   <HBox alignment="CENTER" prefHeight="51.0" prefWidth="407.0">
                      <children>
-                        <RadioButton contentDisplay="CENTER" mnemonicParsing="false" text="En cours de location" />
+                        <RadioButton fx:id="location" contentDisplay="CENTER" mnemonicParsing="false" text="En cours de location" />
                      </children>
                   </HBox>
                </children>

@@ -76,6 +76,7 @@ public class AllCustomersController extends Controller implements Initializable 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+        clientsMenu.setStyle("-fx-background-color:  #339933; -fx-alignment: center;");
         id.setCellValueFactory(new PropertyValueFactory<Client,Integer>("id_client"));
         nom.setCellValueFactory(new PropertyValueFactory<Client,String>("nom"));
         prenom.setCellValueFactory(new PropertyValueFactory<Client,String>("prenom"));

@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="686.0" prefWidth="1191.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AllAgenciesController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="686.0" prefWidth="1191.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AllLocationsController">
     <children>
         <VBox prefHeight="686.0" prefWidth="299.0" style="-fx-background-color: #16901D;">
             <children>
@@ -48,15 +48,15 @@
                         </ImageView>
                     </graphic>
                 </Button>
-            <Button fx:id="agenciesMenu" alignment="BASELINE_LEFT" contentDisplay="CENTER" lineSpacing="1.0" mnemonicParsing="false" onAction="#openAgenciesMenu" prefHeight="62.0" prefWidth="305.0" style="-fx-background-color: #16901D; -fx-alignment: center;" text="Agences" textFill="WHITE">
-               <graphic>
-                  <ImageView fitHeight="32.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: pointer;" translateX="-85.0">
-                     <image>
-                        <Image url="@../../../../../../../../../../windows/Users/loico/Documents/France/Efrei/Cours/Semestre%206/UE%20–%20INFORMATIQUE%20-%20APPLICATIONS%20-%206/Databases/Projet/rentCar/src/assets/agence.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
+                <Button fx:id="agenciesMenu" alignment="BASELINE_LEFT" contentDisplay="CENTER" layoutX="10.0" layoutY="133.0" lineSpacing="1.0" mnemonicParsing="false" onAction="#openAgenciesMenu" prefHeight="62.0" prefWidth="305.0" style="-fx-background-color: #16901D; -fx-alignment: center;" text="Agences" textFill="WHITE">
+                    <graphic>
+                        <ImageView fitHeight="32.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: pointer;" translateX="-85.0">
+                            <image>
+                                <Image url="@../../../../../../../../../../windows/Users/loico/Documents/France/Efrei/Cours/Semestre%206/UE%20–%20INFORMATIQUE%20-%20APPLICATIONS%20-%206/Databases/Projet/rentCar/src/assets/agence.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
                 <Button fx:id="clientsMenu" alignment="BASELINE_LEFT" contentDisplay="CENTER" layoutX="10.0" layoutY="133.0" lineSpacing="1.0" mnemonicParsing="false" onAction="#openClientsMenu" prefHeight="62.0" prefWidth="305.0" style="-fx-background-color: #16901D; -fx-alignment: center;" text="Clients" textFill="WHITE">
                     <graphic>
                         <ImageView fitHeight="29.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: pointer;" translateX="-85.0">
@@ -66,7 +66,7 @@
                         </ImageView>
                     </graphic>
                 </Button>
-                <Button fx:id="EmployeesMenu" alignment="BASELINE_LEFT" contentDisplay="CENTER" layoutX="10.0" layoutY="133.0" lineSpacing="1.0" mnemonicParsing="false" onAction="#openEmployeesMenu" prefHeight="62.0" prefWidth="305.0" style="-fx-background-color: #16901D; -fx-alignment: center;" text="Employés" textFill="WHITE">
+                <Button fx:id="employeesMenu" alignment="BASELINE_LEFT" contentDisplay="CENTER" layoutX="10.0" layoutY="133.0" lineSpacing="1.0" mnemonicParsing="false" onAction="#openEmployeesMenu" prefHeight="62.0" prefWidth="305.0" style="-fx-background-color: #16901D; -fx-alignment: center;" text="Employés" textFill="WHITE">
                     <graphic>
                         <ImageView fitHeight="34.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: pointer;" translateX="-85.0">
                             <image>
@@ -104,32 +104,60 @@
                 </Button>
             </children>
         </VBox>
-        <HBox alignment="CENTER_RIGHT" layoutX="299.0" prefHeight="107.0" prefWidth="892.0" style="-fx-background-color: #D3F7D6;">
+        <HBox alignment="CENTER_RIGHT" layoutX="299.0" prefHeight="105.0" prefWidth="892.0" style="-fx-background-color: #D3F7D6;">
             <padding>
                 <Insets left="20.0" right="20.0" />
             </padding>
         </HBox>
         <VBox layoutX="299.0" layoutY="105.0" prefHeight="581.0" prefWidth="892.0" style="-fx-background-color: #efefef;">
             <children>
-                <GridPane prefHeight="579.0" prefWidth="774.0">
+                <GridPane prefHeight="579.0" prefWidth="892.0">
                     <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                     </columnConstraints>
                     <rowConstraints>
+                        <RowConstraints maxHeight="281.0" minHeight="10.0" prefHeight="57.0" vgrow="SOMETIMES" />
                         <RowConstraints maxHeight="524.0" minHeight="10.0" prefHeight="522.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                     <children>
-                        <TableView fx:id="tableview" prefHeight="585.0" prefWidth="892.0">
+                        <TableView fx:id="tableview" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
                             <columns>
-                                <TableColumn fx:id="id" text="id" />
-                                <TableColumn fx:id="nom" prefWidth="120.0" text="nom" />
-                                <TableColumn fx:id="tel" prefWidth="131.0" text="tel" />
-                                <TableColumn fx:id="latitude" prefWidth="68.0" text="latitude" />
-                                <TableColumn fx:id="longitude" prefWidth="77.0" text="longitude" />
-                        <TableColumn fx:id="nbMaxVehicule" prefWidth="206.0" text="nombre_max_véhicules" />
-                                <TableColumn fx:id="adresse" prefWidth="202.0" text="Adresse" />
+                                <TableColumn fx:id="client" text="client" />
+                                <TableColumn fx:id="vehicule" prefWidth="120.0" text="vehicule" />
+                                <TableColumn fx:id="dateDebut" prefWidth="137.0" text="dateDebut" />
+                                <TableColumn fx:id="dateFin" prefWidth="141.0" text="dateFin" />
+                                <TableColumn fx:id="prixTotal" prefWidth="109.0" text="prixTotal" />
+                                <TableColumn fx:id="actions" prefWidth="304.0" text="actions" />
                             </columns>
                         </TableView>
+                        <HBox alignment="TOP_RIGHT" prefHeight="26.0" prefWidth="892.0">
+                            <children>
+                                <HBox alignment="CENTER" prefHeight="57.0" prefWidth="690.0">
+                                    <children>
+                                        <VBox alignment="CENTER" prefHeight="57.0" prefWidth="229.0" />
+                                    </children>
+                                </HBox>
+                                <HBox alignment="CENTER" prefHeight="57.0" prefWidth="331.0">
+                                    <children>
+                                        <Button fx:id="addLocationButton" alignment="BASELINE_RIGHT" mnemonicParsing="false" onAction="#addLocation" prefHeight="32.0" prefWidth="210.0" style="-fx-background-color: #16901D;" text="Ajouter une location">
+                                            <graphic>
+                                                <ImageView fitHeight="15.0" fitWidth="12.0" pickOnBounds="true" preserveRatio="true">
+                                                    <image>
+                                                        <Image url="@../../../../../../../../../../windows/Users/loico/Documents/France/Efrei/Cours/Semestre%206/UE%20–%20INFORMATIQUE%20-%20APPLICATIONS%20-%206/Databases/Projet/rentCar/src/assets/plus.png" />
+                                                    </image>
+                                                </ImageView>
+                                            </graphic>
+                                            <HBox.margin>
+                                                <Insets />
+                                            </HBox.margin>
+                                            <padding>
+                                                <Insets left="20.0" right="20.0" />
+                                            </padding>
+                                        </Button>
+                                    </children>
+                                </HBox>
+                            </children>
+                        </HBox>
                     </children>
                 </GridPane>
             </children></VBox>

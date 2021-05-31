@@ -1,8 +1,5 @@
 package model.dao;
-import model.Adresse;
-import model.Agence;
-import model.Client;
-import model.Vehicule;
+import model.*;
 
 import java.sql.*;
 import java.util.List;
@@ -70,67 +67,35 @@ public class DAOManager {
     }
     public static List<Vehicule> getCarsByCategory(String category){
         return CarDAO.getCarsByCategory(connection,category);
-    }  public static List<Vehicule> getCarsByMarque(String marque){
+    }
+    public static List<Vehicule> getCarsByMarque(String marque){
         return CarDAO.getCarsByMarque(connection, marque);
     }
 
-
-   /* public boolean updateNbHeures(String nomCours, int nbHeures){
-        try{
-            Statement statement = connection.createStatement();
-            int val = statement.executeUpdate("UPDATE COURS SET NBHEURES=NBHEURES+"+nbHeures+" WHERE NOM='"+nomCours+"'");
-            if(val == 1){
-                System.out.println("mise à jour du cours "+nomCours+" réussie\n");
-                return true;
-            }
-            else{
-                System.out.println("échec de la mise à jour");
-                return false;
-            }
-        }catch (SQLException e){
-            System.out.println(e.getMessage());
-        }
-        return false;
+    public static List<Vehicule> getCurrentlyRentedCars(){
+        return CarDAO.getCurrentlyRentedCars(connection);
     }
 
-    public List<CoursDAO> getCoursPS(){
-        List<CoursDAO> list = new ArrayList<CoursDAO>();
-        try{
-            PreparedStatement preparedStatement = connection.prepareStatement("select * from COURS");
-            ResultSet res = preparedStatement.executeQuery();
-            while (res.next()){
-                int num = res.getInt("NUM_COURS");
-                int nbheures = res.getInt("NBHEURES");
-                int annee = res.getInt("ANNEE");
-                String nom = res.getString("NOM");
+    /** Locations */
+    public static List<Location> getAllLocations(){
+        return LocationDAO.getAllLocations(connection);
+    }
 
-                CoursDAO cours = new CoursDAO(num,nom,nbheures,annee);
-                list.add(cours);
-            }
-        }catch (SQLException e){
-            System.out.println(e.getMessage());
-        }
-        return list;
-    }*/
+    public static boolean deleteLocation(String devis_numero){
+        return LocationDAO.deleteLocation(connection, devis_numero);
+    }
+    public static int insertLocation(Location location){
+        return  LocationDAO.insertLocation(connection, location);
+    }
+    public static void validateLocation(Location location){ LocationDAO.validateLocation(connection,location); }
 
-    public boolean updateNbHeuresPS(String nomCours, int nbHeures){
-        try{
-            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE COURS SET NBHEURES=NBHEURES+? WHERE NOM=?");
-            preparedStatement.setInt(1,nbHeures);
-            preparedStatement.setString(2,nomCours);
-            int val = preparedStatement.executeUpdate();
-            if(val == 1){
-                System.out.println("mise à jour du cours "+nomCours+" réussie\n");
-                return true;
-            }
-            else{
-                System.out.println("échec de la mise à jour\n");
-                return false;
-            }
-        }catch (SQLException e){
-            System.out.println(e.getMessage());
-        }
-        return false;
+    /** Devis */
+    public static int insertDevis(Devis devis){
+        return  DevisDAO.insertDevis(connection, devis);
+    }
+
+    public static boolean deleteDevis(String devis_numero){
+        return DevisDAO.deleteDevis(connection, devis_numero);
     }
 
 

@@ -7,7 +7,10 @@ public class Vehicule {
     public static List<Vehicule> vehicules = new ArrayList<Vehicule>();
     public static boolean all=true;
     public static boolean init=true;
-    public static int comboIndex=0;
+    public static int comboCategoryIndex=0;
+    public static int comboMarqueIndex=0;
+    public static boolean locationBool;
+
 
     private String immatriculation;
     private int kilometrage;
@@ -18,11 +21,26 @@ public class Vehicule {
     private CategorieVehicule categorie;
     private TypeCarburant typeCarburant;
 
+
+    public Vehicule(String immatriculation) {
+        this.immatriculation = immatriculation;
+    }
+
     public Vehicule(String immatriculation, int kilometrage, boolean climatisation, Agence currentAgency, TypeBoite typeBoite, ModeleVehicule modele, CategorieVehicule categorie, TypeCarburant typeCarburant) {
         this.immatriculation = immatriculation;
         this.kilometrage = kilometrage;
         this.climatisation = climatisation;
         this.currentAgency = currentAgency;
+        this.typeBoite = typeBoite;
+        this.modele = modele;
+        this.categorie = categorie;
+        this.typeCarburant = typeCarburant;
+    }
+
+    public Vehicule(String immatriculation, int kilometrage, boolean climatisation, TypeBoite typeBoite, ModeleVehicule modele, CategorieVehicule categorie, TypeCarburant typeCarburant) {
+        this.immatriculation = immatriculation;
+        this.kilometrage = kilometrage;
+        this.climatisation = climatisation;
         this.typeBoite = typeBoite;
         this.modele = modele;
         this.categorie = categorie;

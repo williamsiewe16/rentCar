@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="492.0" prefWidth="487.0" style="-fx-background-color: #dddddd;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LocationController">
+    <opaqueInsets>
+        <Insets />
+    </opaqueInsets>
+    <children>
+        <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="175.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../../../../../../../../../windows/Users/loico/Documents/France/Efrei/Cours/Semestre%206/UE%20–%20INFORMATIQUE%20-%20APPLICATIONS%20-%206/Databases/Projet/rentCar/src/assets/logo.png" />
+            </image>
+        </ImageView>
+        <Label layoutX="108.0" layoutY="210.0" style="-fx-font-weight: bold;" text="Véhicule" />
+        <Label layoutX="107.0" layoutY="257.0" style="-fx-font-weight: bold;" text="Date de Début" />
+        <Label layoutX="118.0" layoutY="165.0" style="-fx-font-weight: bold;" text="Client" />
+        <Button fx:id="validationButton" layoutX="192.0" layoutY="417.0" mnemonicParsing="false" onAction="#validate" prefHeight="35.0" prefWidth="103.0" style="-fx-background-color: #16901D;" text="Valider" />
+        <TextField fx:id="id" layoutX="14.0" layoutY="82.0" prefHeight="24.0" prefWidth="3.0" style="-fx-background-color: #dddddd;" />
+      <ComboBox fx:id="clients" layoutX="186.0" layoutY="161.0" prefHeight="26.0" prefWidth="227.0" />
+      <ComboBox fx:id="vehicules" layoutX="186.0" layoutY="206.0" prefHeight="26.0" prefWidth="227.0" />
+      <Label layoutX="107.0" layoutY="301.0" style="-fx-font-weight: bold;" text="Date de Fin" />
+      <RadioButton fx:id="assurance" layoutX="178.0" layoutY="347.0" mnemonicParsing="false" text="Assurance" />
+      <DatePicker fx:id="dateFin" layoutX="226.0" layoutY="297.0" />
+      <DatePicker fx:id="dateDebut" layoutX="226.0" layoutY="253.0" />
+    </children>
+</AnchorPane>

@@ -4,12 +4,14 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -64,9 +66,14 @@ public class AllCarsController extends Controller implements Initializable {
     @FXML
     private ComboBox<String> marqueComboBox;
 
+    @FXML
+    private RadioButton location;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        carsMenu.setStyle("-fx-background-color:  #339933; -fx-alignment: center;");
         immatriculation.setCellValueFactory(new PropertyValueFactory<Vehicule,String>("immatriculation"));
         kilometrage.setCellValueFactory(new PropertyValueFactory<Vehicule,Integer>("kilometrage"));
         climatisation.setCellValueFactory(new PropertyValueFactory<Vehicule,String>("climatisationString"));
@@ -86,8 +93,12 @@ public class AllCarsController extends Controller implements Initializable {
           //  addClientButton.setDisable(true);
         }else{
             vehicules = DAOManager.getAllVehicules();
+            comboMarqueIndex=0;
+            comboCategoryIndex=0;
+            locationBool=false;
         }
 
+        /* combo Boxes */
         List<String> categorieList = new ArrayList<String>(); categorieList.add("---Aucune sélection---");
         for(CategorieVehicule cat: CategorieVehicule.values()){
             categorieList.add(cat.getDesignation());
@@ -100,36 +111,53 @@ public class AllCarsController extends Controller implements Initializable {
         }
         fillComboBox(marqueComboBox, marqueList, 1);
 
+        /* radioButton */
+        location.selectedProperty().setValue(locationBool);
+        location.selectedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observableValue, Boolean aBoolean, Boolean t1) {
+                locationBool = t1;
+                if(t1) filterVehicules(DAOManager.getCurrentlyRentedCars(), false);
+                else filterVehicules(DAOManager.getAllVehicules(), true);
+            }
+        });
+
+        /* TableView */
         ObservableList<Vehicule> Vehicules = FXCollections.<Vehicule>observableArrayList();
         Vehicules.addAll(vehicules);
         tableview.setItems(Vehicules);
     }
 
+
     public void fillComboBox(ComboBox comboBox, List<String> list, int index){
         ObservableList<String> combos = FXCollections.<String>observableArrayList();
         combos.addAll(list);
         comboBox.setItems(combos);
-        comboBox.setValue(comboBox.getItems().get(comboIndex));
-
+        if(index==0){
+            comboBox.setValue(comboBox.getItems().get(comboCategoryIndex));
+        }else{
+            comboBox.setValue(comboBox.getItems().get(comboMarqueIndex));
+        }
 
         comboBox.valueProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
-                if(t1 == "---Aucune sélection---") filterVehicules(DAOManager.getAllVehicules(), true,0);
+                if(t1 == "---Aucune sélection---") filterVehicules(DAOManager.getAllVehicules(), true);
                 else{
                     if (index == 0) {
-                        filterVehicules(DAOManager.getCarsByCategory(t1), false, 1);
+                        comboCategoryIndex=categorieComboBox.getItems().indexOf(t1);
+                        filterVehicules(DAOManager.getCarsByCategory(t1), false);
                     } else {
-                        filterVehicules(DAOManager.getCarsByMarque(t1), false, 1);
+                        comboMarqueIndex=marqueComboBox.getItems().indexOf(t1);
+                        filterVehicules(DAOManager.getCarsByMarque(t1), false);
                     }
                 }
             }
         });
     }
 
-    public void filterVehicules(List<Vehicule> vehicules_, boolean all_, int index){
+    public void filterVehicules(List<Vehicule> vehicules_, boolean all_){
         all=all_;
-        comboIndex=index;
         vehicules = vehicules_;
         refresh();
     }
