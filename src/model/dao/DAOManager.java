@@ -99,7 +99,7 @@ public class DAOManager {
     }
 
 
-    public void close(){
+    public static void close(){
         try{
             connection.close();
             System.out.println("Fermeture de la connexion à la base de données !!!");
