@@ -54,6 +54,12 @@ public class Adresse {
 		this.codePostal = codePostal;
 	}
 
+	public Adresse(String rue, String ville, int codePostal) {
+		this.rue = rue;
+		this.ville = ville;
+		this.codePostal = codePostal;
+	}
+
 	public Adresse(){
 
 	}

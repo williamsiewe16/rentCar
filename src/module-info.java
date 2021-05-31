@@ -15,4 +15,5 @@ module Test {
     exports controller to javafx.fxml;
     opens controller to javafx.fxml;
     opens model to javafx.base;
+    opens model.dao to javafx.base;
 }

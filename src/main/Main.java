@@ -5,17 +5,20 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
-import model.DAOManager;
+import model.dao.DAOManager;
 
 public class Main extends Application {
 
+    public static int WIDTH = 1191;
+    public static int HEIGHT = 686;
+    public static String AppTitle = "RentCar";
+
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage) throws Exception {
         DAOManager.initialize();
-        Parent root = FXMLLoader.load(getClass().getResource("/view/allClients.fxml"));
-        primaryStage.setTitle("RentCar");
-        primaryStage.setScene(new Scene(root, 1191, 686));
+        Parent root = FXMLLoader.load(getClass().getResource("/view/allCustomers.fxml"));
+        primaryStage.setTitle(AppTitle);
+        primaryStage.setScene(new Scene(root, WIDTH, HEIGHT));
         primaryStage.setResizable(false);
       //  primaryStage.initStyle(StageStyle.UNDECORATED);
         primaryStage.show();

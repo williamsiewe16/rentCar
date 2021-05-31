@@ -1,6 +1,10 @@
-package model;
+package model.dao;
+import model.Adresse;
+import model.Agence;
+import model.Client;
+import model.Vehicule;
+
 import java.sql.*;
-import java.util.ArrayList;
 import java.util.List;
 
 public class DAOManager {
@@ -18,30 +22,58 @@ public class DAOManager {
         }
     }
 
+    /** Clients */
     public static List<Client> getAllClients(){
-        List<Client> list = new ArrayList<Client>();
-        try{
-            PreparedStatement preparedStatement = connection.prepareStatement("select * from Client INNER JOIN Adresse USING(Id_adresse)");
-            ResultSet res = preparedStatement.executeQuery();
-            while (res.next()){
-                int id_client = res.getInt("id_client");
-                String nom = res.getString("nom");
-                String prenom = res.getString("prenom");
-                int tel = res.getInt("tel");
-                int id_adresse = res.getInt("id_adresse");
-                String rue = res.getString("rue");
-                String ville = res.getString("ville");
-                int codePostal = res.getInt("codePostal");
-
-                Adresse adresse = new Adresse(id_adresse,rue,ville,codePostal);
-                Client client = new Client(id_client,nom,prenom,tel,adresse);
-                list.add(client);
-            }
-        }catch (SQLException e){
-            System.out.println(e.getMessage());
-        }
-        return list;
+        return ClientDAO.getAllClients(connection);
     }
+
+    public static Client getClient(int id){
+        return ClientDAO.getClient(connection, id);
+    }
+
+    public static List<Client> getAllClientsByName(String val){
+        return ClientDAO.getAllClientsByName(connection, val);
+    }
+
+    public static List<Client> getGoldClients(){
+        return ClientDAO.getGoldClients(connection);
+    }
+
+    public static List<Client> getNoLocationClients(){
+        return ClientDAO.getNoLocationClients(connection);
+    }
+
+    public static List<Client> getLocationPendingClients(){
+        return ClientDAO.getLocationPendingClients(connection);
+    }
+
+    public static int updateClient(Client client){
+        return ClientDAO.updateClient(connection, client);
+    }
+
+    public static int insertClient(Client client){
+        return  ClientDAO.insertClient(connection, client);
+    }
+
+    public static boolean deleteClient(int id_client){
+        return ClientDAO.deleteClient(connection, id_client);
+    }
+
+    /** Agences */
+    public static List<Agence> getAllAgencies(){
+        return AgenceDAO.getAllAgencies(connection);
+    }
+
+    /** Vehicules */
+    public static List<Vehicule> getAllVehicules(){
+        return CarDAO.getAllCars(connection);
+    }
+    public static List<Vehicule> getCarsByCategory(String category){
+        return CarDAO.getCarsByCategory(connection,category);
+    }  public static List<Vehicule> getCarsByMarque(String marque){
+        return CarDAO.getCarsByMarque(connection, marque);
+    }
+
 
    /* public boolean updateNbHeures(String nomCours, int nbHeures){
         try{
